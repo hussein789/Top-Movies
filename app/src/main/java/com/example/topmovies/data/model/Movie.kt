@@ -19,4 +19,8 @@ data class Movie(
     val title: String,
     @SerializedName("vote_average")
     val rating: Double,
+    @SerializedName("genre_ids")
+    val genreIds: List<Int>,
 )
+
+fun Movie.getImageUrl() = "https://image.tmdb.org/t/p/w500$posterPath"

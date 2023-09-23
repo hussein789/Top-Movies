@@ -2,6 +2,7 @@ package com.example.topmovies.presentation.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.topmovies.data.db.GenreDao
 import com.example.topmovies.data.db.MovieDao
 import com.example.topmovies.data.db.MovieDatabase
 import dagger.Module
@@ -21,13 +22,21 @@ class DatabaseModule {
         return Room.databaseBuilder(
                 context,
                 MovieDatabase::class.java,
-                "movie_database"
-        ).build()
+                "movie_database",
+        )
+                .fallbackToDestructiveMigration()
+                .build()
     }
 
     @Singleton
     @Provides
     fun provideMovieDao(movieDatabase: MovieDatabase): MovieDao {
         return movieDatabase.movieDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGenreDao(movieDatabase: MovieDatabase): GenreDao {
+        return movieDatabase.genreDao()
     }
 }

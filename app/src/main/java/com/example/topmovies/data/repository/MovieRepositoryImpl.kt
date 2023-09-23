@@ -1,5 +1,6 @@
 package com.example.topmovies.data.repository
 
+import com.example.topmovies.data.model.Genre
 import com.example.topmovies.data.model.Movie
 import com.example.topmovies.data.repository.datasource.MovieLocalDataSource
 import com.example.topmovies.data.repository.datasource.MovieRemoteDataSource
@@ -18,5 +19,15 @@ class MovieRepositoryImpl(
     override suspend fun updateMovies() {
         val moviesList = movieRemoteDataSource.getMoviesFromRemote()
         movieLocalDataSource.saveMovies(moviesList)
+    }
+
+    override suspend fun getGenres(): List<Genre> {
+        return movieLocalDataSource.getGenreFromDB()
+    }
+
+    override suspend fun updateGenres() {
+        val remoteGenres = movieRemoteDataSource.getGenresFromRemote()
+        movieLocalDataSource.saveGenres(remoteGenres)
+
     }
 }

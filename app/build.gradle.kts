@@ -17,7 +17,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "API_KEY", "\"e8b4d8d674e0944f5bdc62f2312ec0bb\"")
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/35/\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -115,6 +115,14 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1")
+    testImplementation("androidx.test.ext:junit:1.1.2")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.mockito:mockito-core:5.5.0")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation("org.mockito:mockito-inline:2.21.0")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))

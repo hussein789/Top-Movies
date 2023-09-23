@@ -1,5 +1,6 @@
 package com.example.topmovies.presentation.di
 
+import com.example.topmovies.data.db.GenreDao
 import com.example.topmovies.data.db.MovieDao
 import com.example.topmovies.data.repository.datasource.MovieLocalDataSource
 import com.example.topmovies.data.repository.datasourceimpl.MovieLocalDataSourceImpl
@@ -13,7 +14,7 @@ import dagger.hilt.components.SingletonComponent
 class LocalDataSourceModule {
 
     @Provides
-    fun provideMovieLocalDataSource(movieDao: MovieDao): MovieLocalDataSource {
-        return MovieLocalDataSourceImpl(movieDao)
+    fun provideMovieLocalDataSource(movieDao: MovieDao, genreDao: GenreDao): MovieLocalDataSource {
+        return MovieLocalDataSourceImpl(movieDao, genreDao)
     }
 }
