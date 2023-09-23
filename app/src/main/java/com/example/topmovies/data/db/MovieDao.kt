@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.topmovies.data.model.Movie
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
@@ -17,5 +18,5 @@ interface MovieDao {
     suspend fun deleteAllMovies()
 
     @Query("SELECT * FROM movie_table")
-    fun getAllMovies(): LiveData<List<Movie>>
+    fun getAllMovies(): Flow<List<Movie>>
 }

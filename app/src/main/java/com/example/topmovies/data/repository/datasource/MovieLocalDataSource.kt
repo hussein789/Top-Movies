@@ -1,9 +1,9 @@
 package com.example.topmovies.data.repository.datasource
 
-import androidx.lifecycle.LiveData
 import com.example.topmovies.data.model.Movie
+import kotlinx.coroutines.flow.Flow
 
 interface MovieLocalDataSource {
-    fun getMoviesFromDB(): LiveData<List<Movie>>
+    fun getMoviesFromDB(): Flow<List<Movie>>
     suspend fun saveMovies(movies: List<Movie>)
 }

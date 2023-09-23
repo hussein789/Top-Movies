@@ -2,4 +2,5 @@
     <string name="app_name">Top Movies</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fetching_movies_error">Error fetching latest movies. Check your internet connection and try again.</string>
 </resources>

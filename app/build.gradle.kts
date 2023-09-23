@@ -17,7 +17,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "API_KEY", "\"e8b4d8d674e0944f5bdc62f2312ec0bb\"")
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/35/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -37,6 +37,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+        freeCompilerArgs += "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
     }
     buildFeatures {
         compose = true
@@ -45,6 +46,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
+
     }
     packaging {
         resources {
@@ -62,29 +64,32 @@ dependencies {
     val interceptorVersion = "4.9.3"
     val glideVersion = "4.16.0"
     val hiltVersion = "2.44"
+    val glideComposeVersion = "1.0.0-alpha.5"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.activity:activity-compose:1.7.2")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
-    // View Model
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    // ViewModel utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
-    // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    // Lifecycles only (without ViewModel or LiveData)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    // Saved state module for ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
-
-    // Annotation processor
-    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
+//    // View Model
+//    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+//    // ViewModel utilities for Compose
+//    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+//    // LiveData
+//    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+//    // Lifecycles only (without ViewModel or LiveData)
+//    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+//    // Saved state module for ViewModel
+//    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
+//
+//    // Annotation processor
+//    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
 
     // Room
     implementation("androidx.room:room-runtime:$roomVersion")
@@ -101,6 +106,7 @@ dependencies {
 
     // Glide
     implementation("com.github.bumptech.glide:glide:$glideVersion")
+    implementation("com.github.bumptech.glide:compose:$glideComposeVersion")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")

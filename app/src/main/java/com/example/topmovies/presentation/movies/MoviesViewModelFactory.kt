@@ -2,6 +2,7 @@ package com.example.topmovies.presentation.movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.topmovies.MoviesViewModel
 import com.example.topmovies.domain.usercase.GetMoviesUseCase
 import com.example.topmovies.domain.usercase.UpdateMoviesUseCase
 import javax.inject.Inject
