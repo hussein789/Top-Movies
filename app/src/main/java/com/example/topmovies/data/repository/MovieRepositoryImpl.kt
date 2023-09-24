@@ -28,6 +28,5 @@ class MovieRepositoryImpl(
     override suspend fun updateGenres() {
         val remoteGenres = movieRemoteDataSource.getGenresFromRemote()
         movieLocalDataSource.saveGenres(remoteGenres)
-
     }
 }

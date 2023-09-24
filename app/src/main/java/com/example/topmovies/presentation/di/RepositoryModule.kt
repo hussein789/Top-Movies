@@ -16,7 +16,7 @@ class RepositoryModule {
     @Provides
     fun provideMovieRepository(
             movieLocalDataSource: MovieLocalDataSource,
-            movieRemoteDataSource: MovieRemoteDataSource
+            movieRemoteDataSource: MovieRemoteDataSource,
             ): MovieRepository {
         return MovieRepositoryImpl(movieLocalDataSource, movieRemoteDataSource)
     }
