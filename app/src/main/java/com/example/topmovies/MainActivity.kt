@@ -3,6 +3,7 @@ package com.example.topmovies
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,19 +29,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.topmovies.databinding.ActivityMainBinding
 import com.example.topmovies.presentation.movies.MovieDetailsScreen
 import com.example.topmovies.presentation.movies.MoviesScreen
 import com.example.topmovies.ui.theme.TopMoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-enum class MovieDestination() {
-    LIST, DETAILS
+enum class MovieDestination(@StringRes val title: Int) {
+    LIST(R.string.list_screen_name), DETAILS(R.string.details_screen_name)
 }
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -61,9 +60,12 @@ fun TopMovieApp(
 
 ) {
     val currentScreen = navController.currentBackStackEntryAsState()
+    val screenTitle = MovieDestination.valueOf(
+            currentScreen.value?.destination?.route ?: MovieDestination.LIST.name,
+    )
     Scaffold(
             topBar = {
-                TopMoviesTopBar(currentScreen.value?.destination?.route ?: "", navController.previousBackStackEntry != null) { navController.navigateUp() }
+                TopMoviesTopBar(screenTitle.title, navController.previousBackStackEntry != null) { navController.navigateUp() }
             },
     ) { contentPadding ->
         val uiState by moviesViewModel.movieUiState.collectAsState()
@@ -90,7 +92,7 @@ fun TopMovieApp(
 
 @Composable
 fun TopMoviesTopBar(
-        title: String,
+        @StringRes title: Int,
         shouldShowBackButton: Boolean,
         onBackButtonPressed: () -> Unit,
 ) {
@@ -99,7 +101,7 @@ fun TopMoviesTopBar(
             if (shouldShowBackButton) {
                 Icon(painter = painterResource(id = R.drawable.baseline_arrow_back_24), contentDescription = null, modifier = Modifier.clickable { onBackButtonPressed() })
             }
-            Text(text = stringResource(id = R.string.app_name), modifier = Modifier.weight(1f), textAlign = TextAlign.Center, style = MaterialTheme.typography.headlineLarge)
+            Text(text = stringResource(id = title), modifier = Modifier.weight(1f), textAlign = TextAlign.Center, style = MaterialTheme.typography.headlineLarge)
         }
     })
 }

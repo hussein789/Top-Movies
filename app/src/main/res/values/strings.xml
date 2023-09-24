@@ -3,4 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fetching_movies_error">Error fetching latest movies. Check your internet connection and try again.</string>
+    <string name="list_screen_name">Popular Movies</string>
+    <string name="details_screen_name">Overview</string>
 </resources>
